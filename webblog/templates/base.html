@@ -26,5 +26,14 @@
 </head>
 <body class="bg-dark">
     <h2><a href="{% url 'articles:list' %}">Articles</a></h2>
+    <nav>
+        <ul>
+            <li>
+                <form action="{% url 'accounts:logout' %}" method="post">{% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </nav>
     <div class="container"> {% block body %}{% endblock %}</div></body>
 </html>
