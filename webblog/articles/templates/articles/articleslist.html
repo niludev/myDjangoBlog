@@ -5,13 +5,25 @@
 {% endblock %}
 
 {% block body %}
-    <div class="text-white text-decoration-none">
-        <h1 class="">Article Lists</h1>
-
-        {% for article in articles %}
-            <h2><a class="text-white text-decoration-none" href="{% url 'articles:detail' slug=article.slug %}">{{ article.title }}</a></h2>
-            <P>{{ article.snippet }}</P>
-            <p>{{ article.date }}</p>
-        {% endfor %}
+    <div class=" text-decoration-none my-4 mt-5 py-3">
+        <h1 class="text-center text-white">Article Lists</h1>
+        <div class="row mt-4">
+            {% for article in articles %}
+                <div class="col-md-4 mb-4 py-2">
+                    <div class="card bg-transparent border border-white h-100">
+                        <div class="card-body text-white">
+                            <h2 class="card-title"><a class="text-white text-decoration-none"
+                                   href="{% url 'articles:detail' slug=article.slug %}">{{ article.title }}</a></h2>
+                            <P class="card-text text-white">{{ article.snippet }}</P>
+                            <p class="card-text text-white"><small class="text-white-50">{{ article.date }}</small></p>
+                            <div class="card-text text-white d-inline-block position-absolute bottom-0 end-0 px-2 py-1" style="border-top: 1px solid white; border-left: 1px solid white; border-top-left-radius: 4px;">
+                                <small class="">added by {{ article.author.username }}</small>
+                            </div>
+{#                            <p class="card-text text-white "><small class="text-white-50">added by {{ article.author.username }}</small></p>#}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

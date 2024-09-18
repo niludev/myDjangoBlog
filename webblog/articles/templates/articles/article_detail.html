@@ -3,10 +3,12 @@
 {% block body %}
     <div>
         <div class="text-white">
-            <img src="{{ article.image.url }}" alt="">
-            <h1>{{ article.title }}</h1>
-            <p>{{ article.body }}</p>
-            <p>{{ article.date }}</p>
+            <div class="mb-2 ratio ratio-16x9">
+                <img class="img-fluid rounded mb-4" style="object-fit: cover;" src="{{ article.image.url }}" alt="">
+            </div>
+            <h1 class="display-4 mb-4 mt-4 pt-3 text-center">{{ article.title }}</h1>
+            <p class="lead mb-4 text-center">{{ article.body }}</p>
+            <p class="text-white-50 text-center">{{ article.date }}</p>
         </div>
     </div>
 {% endblock %}

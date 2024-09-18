@@ -23,17 +23,120 @@
             Blog
         {% endblock %}
     </title>
+    <style>
+        {#a.text-white:hover {#}
+        {#    color: rgba(255, 255, 255, 0.5) !important;#}
+
+
+        {#button.btn-link.text-white:hover {#}
+        {#    color: rgba(255, 255, 255, 0.5) !important;#}
+
+        .navbar-link:hover {
+            color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .site-form {
+            margin-top: 1rem;
+            border: 1px solid white;
+            border-radius: 4px;
+            padding: 1.25rem;
+        }
+
+        {#.site-form label {#}
+        {#    margin-bottom: 0.5rem;#}
+
+
+        .site-form input[type="text"],
+        .site-form input[type="password"],
+        .site-form input[type="file"],
+        .site-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1.25rem;
+            border: 1px solid white;
+            border-radius: 4px;
+            background-color: transparent;
+            color: white;
+            font-size: 1rem;
+            box-sizing: border-box;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        .site-form input[type="text"]:focus,
+        .site-form input[type="password"]:focus,
+        .site-form input[type="file"]:focus,
+        .site-form textarea:focus {
+            outline: none;
+            border-color: lightgray;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        .site-form input[type="submit"] {
+            margin-top: 0.75rem;
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .site-form input[type="submit"]:hover {
+            background-color: lightgray;
+            color: black;
+        }
+
+        .helptext {
+            {#color: #bbb;#}
+            font-size: 0.90rem;
+
+        }
+
+        {#.errorlist {#}
+        {#    padding: 0;#}
+
+        .errorlist li {
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            list-style-type: none;
+            color: #ff5722;
+        }
+
+
+    </style>
 </head>
 <body class="bg-dark">
-    <h2><a href="{% url 'articles:list' %}">Articles</a></h2>
-    <nav>
-        <ul>
-            <li>
-                <form action="{% url 'accounts:logout' %}" method="post">{% csrf_token %}
-                    <button type="submit">Logout</button>
-                </form>
-            </li>
+<div>
+    {#    <h2><a href="{% url 'articles:list' %}">Articles</a></h2>#}
+    <nav class="mt-3 ">
+        <ul class="mb-4 d-flex justify-content-center text-white list-unstyled text-center">
+            <li class="mx-3"><a class="navbar-link text-white text-decoration-none"
+                                href="{% url 'articles:list' %}">Articles</a></li>
+            {% if user.is_authenticated %}
+                <li class="d-inline-block text-white nav-item">
+                    <form class="d-inline-block" action="{% url 'accounts:logout' %}" method="post">{% csrf_token %}
+                        <button class="navbar-link btn-link text-white text-decoration-none bg-dark border-0"
+                                type="submit">Logout
+                        </button>
+                    </form>
+                </li>
+                <li class="mx-3 nav-item">
+                    <a class="navbar-link text-white text-decoration-none" href="{% url 'articles:create' %}">create
+                        article</a>
+                </li>
+            {% else %}
+                <li class="mx-3 nav-item">
+                    <a class="navbar-link text-white text-decoration-none" href="{% url 'accounts:login' %}">login</a>
+                </li>
+                <li class="mx-3 nav-item">
+                    <a class="navbar-link text-white text-decoration-none" href="{% url 'accounts:signup' %}">signup</a>
+                </li>
+            {% endif %}
         </ul>
     </nav>
-    <div class="container"> {% block body %}{% endblock %}</div></body>
+</div>
+<div class="container"> {% block body %}{% endblock %}</div>
+</body>
 </html>
